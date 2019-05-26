@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html style="height: 100%;">
+<head>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/jamey.css' ) }}">
+    {% block head %}
+        {% block metas %}
+            <meta charset="utf-8">
+        {% endblock metas %}
+
+        <title>{% block title %}上传图片{% endblock %}</title>
+        <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='favicon.ico') }}">
+        {% block styles %}
+            <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css' ) }}">
+        {% endblock styles %}
+    {% endblock head %}
+<style>
+		.demo{
+
+			width: 80%;
+
+			font-size: large;
+
+
+			{#background: red;#}
+
+            display: inline-block;;
+			text-align: center;
+
+			margin-left: 10%;
+		}
+
+
+</style>
+</head>
+<body style="text-align: left; height: 100%;   width: 100%;">
+<nav>
+    {% block nav %}
+        <ul>
+            <li><a href="{{ url_for('upload') }}">Home</a></li>
+        </ul>
+    {% endblock %}
+</nav>
+
+<main>
+    <div >
+        {% for message in get_flashed_messages() %}
+        <div class="alert">
+            {{ message }}
+        </div>
+    {% endfor %}
+    {% block content %}{% endblock %}
+    </div>
+</main>
+<footer style="margin-bottom: 0; text-align: center;">
+    {% block footer %}
+        <small> &copy; 2019 <a href="https://github.com/JameyWoo" title="Written by JameyWoo">姬小野</a> /
+            <a href="https://github.com/JameyWoo" title="Fork me on GitHub">GitHub</a>
+        </small>
+    {% endblock %}
+</footer>
+{% block scripts %}{% endblock %}
+</body>
+</html>

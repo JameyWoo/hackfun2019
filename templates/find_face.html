@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% from 'macros.html' import form_field %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+{% if session.filenames %}<h1>你提交的图片：</h1>
+{% for filename in session.filenames %}
+    {% if session.filenames %}
+{% for filename in session.filenames %}
+<a href="{{ url_for('get_file', filename=filename) }}" target="_blank">
+    <img src="{{ url_for('get_file', filename=filename) }}" width="300">
+</a>
+{% endfor %}
+{% endif %}
+
+    <h1>识别结果</h1><br><h4>{{ result }}</h4>
+    <h4>您的地理位置：</h4>
+    <p id="location">地理位置识别</p>
+{#    <h4>检测到您的地理位置为：湖南长沙超算中心</h4>#}
+{#    <img src="{{ url_for('static', filename='location.jpg') }}"/>#}
+    <h4>ocr 验证结果：{{ ocr_result }}</h4>
+    <h4>情绪值验证：{{ emotion }}</h4>
+<script type="text/javascript" src="{{ url_for('static', filename='js/gps.js') }}"></script>
+    <h1><a href="{{ url_for("upload") }}">返回重新提交</a></h1>
+{% endfor %}
+{% endif %}
+{% endblock %}
